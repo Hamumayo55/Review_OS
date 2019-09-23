@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"log"
@@ -56,21 +55,15 @@ func FileRead() {
 	}
 	defer file.Close()
 
-	output := "0"
-
-	if buffering {
-		buffer := bufio.NewWriterSize(file, BufferSize)
-
-		for i := 0; i < WriteSize; i++ {
-			buffer.Write(([]byte)(output))
+	for {
+		read, err = file.Read()
+		if read == 0 {
+			break
 		}
-		buffer.Flush()
-		fmt.Printf("buffer file write finished\n")
-	} else {
-		for i := 0; i < WriteSize; i++ {
-			file.Write(([]byte)(output))
+		if err != nil {
+			break
 		}
-		fmt.Printf("unbuffer file write finished\n")
+		fmt.Printf(read)
 	}
 }
 
