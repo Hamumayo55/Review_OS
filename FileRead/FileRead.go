@@ -12,12 +12,14 @@ import (
 var BufferSize, WriteSize int = 1024, 102400
 var buffering bool = false
 
+//helpの実装
 func help() {
 	fmt.Printf("-b -> buffered Read\n")
 	fmt.Printf("-u -> unbuffered Read\n")
 	fmt.Printf("--size 1024 -> Read file size\n")
 }
 
+//モードの選択を行う
 func getopts(args []string) {
 	if len(args) == 0 {
 		help()
@@ -47,6 +49,7 @@ func getopts(args []string) {
 }
 
 func FileRead() {
+	//Pathを指定する
 	FILE_PATH := `PATH/To/File`
 	file, err := os.Create(FILE_PATH)
 
