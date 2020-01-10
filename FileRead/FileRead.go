@@ -14,8 +14,8 @@ var buffering bool = false
 
 //helpの実装
 func help() {
-	fmt.Printf("-b -> buffered Read\n")
-	fmt.Printf("-u -> unbuffered Read\n")
+	fmt.Printf("b -> buffered Read\n")
+	fmt.Printf("u -> unbuffered Read\n")
 	fmt.Printf("--size 1024 -> Read file size\n")
 }
 
@@ -23,7 +23,6 @@ func help() {
 func getopts(args []string) {
 	if len(args) == 0 {
 		help()
-		os.Exit(0)
 	}
 	for i := 0; i < len(args); i++ {
 		switch args[i] {
@@ -43,8 +42,12 @@ func getopts(args []string) {
 				i = i + 1
 				fmt.Printf("new Read size is %d\n", WriteSize)
 			}
-		default:
+		case "h":
 			help()
+			os.Exit(0)
+		default:
+			fmt.Printf("Command not found")
+			os.Exit(0)
 		}
 	}
 }
@@ -59,10 +62,17 @@ func FileRead() {
 	}
 	defer file.Close()
 
-	buffer = make([]byte, BufferSize)
+	buffer := make([]byte, BufferSize)
 
 	for {
+		n, err := file.Read(buffer)
 
+		if n == 0 {
+			break
+		}
+		if err != nil {
+			break
+		}
 	}
 }
 
