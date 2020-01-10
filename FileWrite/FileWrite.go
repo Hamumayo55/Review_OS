@@ -22,6 +22,7 @@ func help() {
 func getopts(args []string) {
 	if len(args) == 0 {
 		help()
+		os.Exit(0)
 	}
 	for i := 0; i < len(args); i++ {
 		switch args[i] {
@@ -48,7 +49,7 @@ func getopts(args []string) {
 }
 
 func filewrite() {
-	FILE_PATH := `PATH/To/File`
+	FILE_PATH := `sample.txt`
 	file, err := os.Create(FILE_PATH)
 
 	if err != nil {

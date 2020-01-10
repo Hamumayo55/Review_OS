@@ -23,6 +23,7 @@ func help() {
 func getopts(args []string) {
 	if len(args) == 0 {
 		help()
+		os.Exit(0)
 	}
 	for i := 0; i < len(args); i++ {
 		switch args[i] {
@@ -50,23 +51,18 @@ func getopts(args []string) {
 
 func FileRead() {
 	//Pathを指定する
-	FILE_PATH := `PATH/To/File`
-	file, err := os.Create(FILE_PATH)
+	FILEPATH := "sample.txt"
+	file, err := os.Open(FILEPATH)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 
+	buffer = make([]byte, BufferSize)
+
 	for {
-		read, err = file.Read()
-		if read == 0 {
-			break
-		}
-		if err != nil {
-			break
-		}
-		fmt.Printf(read)
+
 	}
 }
 
