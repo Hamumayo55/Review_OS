@@ -54,7 +54,7 @@ func getopts(args []string) {
 
 func FileRead() {
 	//Pathを指定する
-	FILEPATH := "sample.txt"
+	FILEPATH := "PATH/TO/FILE"
 	file, err := os.Open(FILEPATH)
 
 	if err != nil {
