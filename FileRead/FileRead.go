@@ -62,6 +62,10 @@ func FileRead() {
 	}
 	defer file.Close()
 
+	if buffering {
+		BufferSize = 1
+	}
+
 	buffer := make([]byte, BufferSize)
 
 	for {
